@@ -10,7 +10,7 @@ export function CurrentWeatherView({ currentWeather, fetchForecast }: { currentW
                 <Text style={styles.sectionTitle}>Current Weather</Text>
                 <TouchableOpacity onPress={fetchForecast}>
                     <Image
-                        source={require('../../assets/images/reload.png')}
+                        source={require('../../assets/images/reload.svg')}
                         style={{ width: 24, height: 24 }}
                     />
                 </TouchableOpacity>

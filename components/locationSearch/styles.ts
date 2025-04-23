@@ -6,9 +6,24 @@ export const styles = StyleSheet.create({
       padding: 10,
       backgroundColor: '#ecf0f1',
     },
+    locationContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    locationButton: {
+      backgroundColor: 'white',
+      padding: 10,
+      borderRadius: 5,
+    },
+    locationButtonIcon: {
+      width: 24,
+      height: 24,
+    },  
     searchInput: {
       height: 40,
       borderWidth: 1,
+      flex: 1,
       borderColor: '#ddd',
       borderRadius: 8,
       paddingHorizontal: 10,

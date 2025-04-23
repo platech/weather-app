@@ -33,6 +33,12 @@ module.exports = {
         "resizeMode": "contain",
         "backgroundColor": "#ffffff"
       }
+    ],
+    [
+      "expo-location",
+      {
+        "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location for an accurate weather forecast."
+      }
     ]
   ],
   experiments: {
