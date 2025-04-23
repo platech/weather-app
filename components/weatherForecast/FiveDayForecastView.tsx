@@ -5,7 +5,7 @@ import { Image, Text, View } from "react-native";
 import { styles } from "../styles";
 import { getWeatherIcon } from "../utils";
 
-export default function FiveDayForecast({ dailyForecast }: { dailyForecast: DailyForecast[] }) {
+export function FiveDayForecast({ dailyForecast }: { dailyForecast: DailyForecast[] }) {
     return (
         <View>
         <Text style={styles.sectionTitle}>5-Day Forecast</Text>

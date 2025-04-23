@@ -1,11 +1,10 @@
-import CurrentWeatherView from '@/components/weatherForecast/currentWeatherView';
-import FiveDayForecast from '@/components/weatherForecast/fiveDayForecast';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, ScrollView, TextInput } from "react-native";
+import { CurrentWeatherView, FiveDayForecast } from '.';
 import { useGetGeocodedLocationSuggestions, useGetWeatherForecast } from '../../hooks';
 import { styles } from '../styles';
 
-export default function WeatherForecastScreen() {
+export function WeatherForecastScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const { data: locations, isLoading: isLoadingLocations, fetchGeocode } = useGetGeocodedLocationSuggestions({ 
     query: searchQuery 
