@@ -14,7 +14,7 @@ interface UseGeocodeLocationProps {
   query: string;
 }
 
-const useGetGeocodedLocationSuggestions = ({ query }: UseGeocodeLocationProps) => {
+export const useGetGeocodedLocationSuggestions = ({ query }: UseGeocodeLocationProps) => {
   const [data, setData] = useState<GeocodingResponse[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,5 +57,3 @@ const useGetGeocodedLocationSuggestions = ({ query }: UseGeocodeLocationProps) =
     fetchGeocode,
   };
 };
-
-export default useGetGeocodedLocationSuggestions;

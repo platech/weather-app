@@ -27,6 +27,11 @@ export const styles = StyleSheet.create({
       shadowRadius: 4,
       elevation: 3,
     },
+    currentWeatherHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
     weatherIcon: {
       width: 100,
       height: 100,
