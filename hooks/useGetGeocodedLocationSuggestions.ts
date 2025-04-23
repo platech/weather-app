@@ -1,14 +1,6 @@
+import { GeocodingResponse } from '@/types/weather';
 import Constants from 'expo-constants';
 import { useState } from 'react';
-
-interface GeocodingResponse {
-  name: string;
-  local_names?: Record<string, string>;
-  lat: number;
-  lon: number;
-  country: string;
-  state?: string;
-}
 
 interface UseGeocodeLocationProps {
   query: string;
