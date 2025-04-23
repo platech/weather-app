@@ -2,6 +2,8 @@ export interface Location {
   latitude: number;
   longitude: number;
   name: string;
+  country: string;
+  state?: string;
 }
 
 export interface Coordinates {

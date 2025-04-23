@@ -1,4 +1,5 @@
-import { Location, WeatherState } from '@/types/storage';
+import { WeatherState } from '@/types/storage';
+import { Location } from '@/types/weather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 

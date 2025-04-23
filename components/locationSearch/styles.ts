@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+
 export const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -6,7 +7,7 @@ export const styles = StyleSheet.create({
       backgroundColor: '#ecf0f1',
     },
     searchInput: {
-      height: 45,
+      height: 40,
       borderWidth: 1,
       borderColor: '#ddd',
       borderRadius: 8,
@@ -15,12 +16,18 @@ export const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     locationItem: {
-      padding: 10,
-      borderWidth: 1,
-      borderColor: '#ddd',
-      borderRadius: 8,
+      padding: 15,
+      borderBottomWidth: 1,
+      borderBottomColor: '#eee',
     },
     button: {
+      backgroundColor: 'white',
+    },
+    sectionTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
       marginBottom: 10,
-    }
+      color: '#2d3436',
+      paddingHorizontal: 15,
+    },
   });
