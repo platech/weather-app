@@ -2,6 +2,8 @@ import { CurrentWeather } from "@/types/weather";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { getWeatherIcon } from "../utils";
 import { styles } from "./styles";
+import ReloadIcon from "@/assets/images/reload.svg";
+
 
 export function CurrentWeatherView({ currentWeather, fetchForecast }: { currentWeather: CurrentWeather, fetchForecast: () => void }) {
     return (
@@ -9,10 +11,7 @@ export function CurrentWeatherView({ currentWeather, fetchForecast }: { currentW
             <View style={styles.currentWeatherHeader}>
                 <Text style={styles.sectionTitle}>Current Weather</Text>
                 <TouchableOpacity onPress={fetchForecast}>
-                    <Image
-                        source={require('../../assets/images/reload.svg')}
-                        style={{ width: 24, height: 24 }}
-                    />
+                    <ReloadIcon width={24} height={24} stroke="black" />
                 </TouchableOpacity>
             </View>
             <Image

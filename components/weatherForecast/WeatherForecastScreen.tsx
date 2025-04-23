@@ -1,11 +1,11 @@
+import ChevronRightIcon from "@/assets/images/chevron-right.svg";
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { ActivityIndicator, ScrollView, Text, TouchableOpacity } from "react-native";
-import { CurrentWeatherView, FiveDayForecast } from '.';
+import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useAppSelector } from '../../app/store/hooks';
 import { useGetWeatherForecast } from '../../hooks';
-import { styles } from './styles';
 import { fullLocationName } from '../utils';
+import { styles } from './styles';
 
 
 export function WeatherForecastScreen() {
@@ -18,7 +18,7 @@ export function WeatherForecastScreen() {
 
   const location = lastKnownLocation || null;
 
-  const { data: weather, isLoading: isLoadingWeather, fetchForecast } = useGetWeatherForecast({
+  const { data: Data, isLoading: isLoadingWeather, fetchForecast } = useGetWeatherForecast({
     location
   });
 
@@ -31,25 +31,31 @@ export function WeatherForecastScreen() {
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity style={styles.searchInput} onPress={navigateToSearch}>
-        <Text style={styles.searchInputText}>
-          {location ? fullLocationName(location) : 'Search city...'}
+        <Text style={styles.searchInputText} ellipsizeMode="tail" numberOfLines={2}>
+          {location ? fullLocationName(location) : 'Search a city or location...'}
         </Text>
+        <ChevronRightIcon width={24} height={24} stroke="#666666" />
       </TouchableOpacity>
 
       {isLoadingWeather && (
         <ActivityIndicator size="large" color="#0000ff" style={styles.loadingIndicator} />
       )}
 
-      {!location && (
-        <Text style={styles.container}>Search for a city to view the weather forecast</Text>
+      {(
+        <View style={styles.emptyStateContainer}>
+          <Image source={require('@/assets/images/empty-state-main.png')} style={styles.emptyStateImage} />
+          <Text style={styles.emptyStateText}>
+            Can't wait for the sunny days!
+          </Text>
+        </View>
       )}
 
-      {weather && !isLoadingWeather && location && (
+      {/* {weatherData && !isLoadingWeather && location && (
         <>
-          <CurrentWeatherView currentWeather={weather.current} fetchForecast={fetchForecast} />
-          <FiveDayForecast dailyForecast={weather.daily} />
+          <CurrentWeatherView currentWeather={weatherData.current} fetchForecast={fetchForecast} />
+          <FiveDayForecast dailyForecast={weatherData.daily} />
         </>
-      )}
+      )} */}
     </ScrollView>
   );
 }

@@ -8,7 +8,7 @@ interface Coordinates {
 }
 
 export const useGetReverseGeocoding = () => {
-  const [data, setData] = useState<GeocodingResponse[] | null>(null);
+  const [data, setData] = useState<GeocodingResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +33,7 @@ export const useGetReverseGeocoding = () => {
       }
 
       const result = await response.json();
-      setData(result);
+      setData(result?.[0]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
