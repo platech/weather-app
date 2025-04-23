@@ -9,7 +9,10 @@ import { useNavigation } from "@react-navigation/native";
 import { getLastKnownPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
 import { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { colors } from "../colors";
 import { styles } from "./styles";
+
+const Separator = () => <View style={styles.separator} />;
 
 export function LocationSearchScreen() {
   const dispatch = useAppDispatch();
@@ -91,7 +94,7 @@ export function LocationSearchScreen() {
       onPress={() => handleLocationSelected(item)}
     >
       <View style={styles.locationItem}>
-        <Text>{fullLocationName(item)}</Text>
+        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.locationText}>{fullLocationName(item)}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -103,14 +106,22 @@ export function LocationSearchScreen() {
           style={styles.searchInput}
           value={searchQuery}
           placeholder="Search for a city"
+          placeholderTextColor={colors.tertiary}
           onChangeText={setSearchQuery}
+          autoFocus={true}
+          returnKeyType="search"
+          clearButtonMode="while-editing"
         />
-        <TouchableOpacity style={styles.locationButton} onPress={getDeviceLocation}>
-          <GpsIcon width={24} height={24} stroke="black" />
+        <TouchableOpacity 
+          style={styles.locationButton} 
+          onPress={getDeviceLocation}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <GpsIcon width={24} height={24} stroke={colors.sealbrown} />
         </TouchableOpacity>
       </View>
 
-      {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
+      {isLoading && <ActivityIndicator size="large" color={colors.sealbrown} />}
 
       {showRecentSearches && (
         <Text style={styles.sectionTitle}>Recent Searches</Text>
@@ -120,9 +131,10 @@ export function LocationSearchScreen() {
         data={displayData}
         keyExtractor={(item) => `${item.lat}-${item.lon}`}
         renderItem={renderItem}
+        ItemSeparatorComponent={Separator}
         ListEmptyComponent={
           showNoResults ? (
-            <Text style={styles.noResultsText}>No locations found</Text>
+            <Text style={styles.noResultsText}>Sorry, we couldn't find that location. Could you try another one?</Text>
           ) : null
         }
       />}

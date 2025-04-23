@@ -1,20 +1,24 @@
-import Constants from "expo-constants";
 import { StyleSheet } from "react-native";
+import { colors } from "../colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#ecf0f1',
-    paddingTop: Constants.statusBarHeight + 10,
+    backgroundColor: '#F4DFC0',
   },
   searchInput: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: colors.quaternary,
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   searchInputText: {
     fontSize: 16,
@@ -40,7 +44,7 @@ export const styles = StyleSheet.create({
     marginTop: 8,
   },
   currentWeather: {
-    backgroundColor: 'white',
+    backgroundColor: colors.quaternary,
     borderRadius: 12,
     padding: 15,
     marginBottom: 20,
@@ -84,7 +88,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   forecastCard: {
-    backgroundColor: 'white',
+    backgroundColor: colors.quaternary,
     borderRadius: 8,
     padding: 10,
     marginRight: 10,
