@@ -26,7 +26,6 @@ declare global {
 
 function AppContent() {
   useEffect(() => {
-    // Load saved state when app starts
     store.dispatch(loadSavedState());
   }, []);
 
