@@ -18,7 +18,7 @@ export const useGetGeocodedLocationSuggestions = ({ query }: UseGeocodeLocationP
     setError(null);
     try {
       const apiKey = Constants.expoConfig?.extra?.OPENWEATHER_API_KEY;
-      
+
       if (!apiKey) {
         throw new Error('OpenWeather API key is not configured');
       }
@@ -33,13 +33,14 @@ export const useGetGeocodedLocationSuggestions = ({ query }: UseGeocodeLocationP
         throw new Error('Failed to fetch location data');
       }
 
-      const rawResults = await response.json();
-      const result = rawResults.filter((location: GeocodingResponse, index: number) => {
-        return rawResults.findIndex((l: GeocodingResponse) => 
-          l.lat === location.lat && l.lon === location.lon
-        ) === index;
-      });
-      console.log(result);
+      const resultsWithDuplicates = await response.json();
+      const result = resultsWithDuplicates.filter((location: GeocodingResponse, index: number) =>
+        resultsWithDuplicates.findIndex((potentialDuplicate: GeocodingResponse) =>
+          potentialDuplicate.state === location.state &&
+          potentialDuplicate.country === location.country &&
+          potentialDuplicate.name === location.name
+        ) === index
+      );
       setData(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

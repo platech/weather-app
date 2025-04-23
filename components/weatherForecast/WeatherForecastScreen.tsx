@@ -5,6 +5,7 @@ import { CurrentWeatherView, FiveDayForecast } from '.';
 import { useAppSelector } from '../../app/store/hooks';
 import { useGetWeatherForecast } from '../../hooks';
 import { styles } from './styles';
+import { fullLocationName } from '../utils';
 
 
 export function WeatherForecastScreen() {
@@ -31,7 +32,7 @@ export function WeatherForecastScreen() {
     <ScrollView style={styles.container}>
       <TouchableOpacity style={styles.searchInput} onPress={navigateToSearch}>
         <Text style={styles.searchInputText}>
-          {location ? location.name : 'Search city...'}
+          {location ? fullLocationName(location) : 'Search city...'}
         </Text>
       </TouchableOpacity>
 

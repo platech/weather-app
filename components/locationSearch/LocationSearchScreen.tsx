@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { addSearchLocation, setLastKnownLocation } from "@/app/store/weatherSlice";
-import { mapGeocodingResponseToLocation } from "@/components/utils";
+import { fullLocationName, mapGeocodingResponseToLocation } from "@/components/utils";
 import { useGetGeocodedLocationSuggestions } from "@/hooks";
 import { GeocodingResponse } from "@/types/weather";
 import { useNavigation } from "@react-navigation/native";
@@ -50,12 +50,11 @@ export function LocationSearchScreen() {
       navigation.goBack();
     }
 
-    const stateOrBlank = item.state ? `${item.state}, ` : '';
 
     return (
       <TouchableOpacity style={styles.button} onPress={onHistoryItemSelected}>
         <View style={styles.locationItem}>
-          <Text>{item.name}, {stateOrBlank}{item.country}</Text>
+          <Text>{fullLocationName(item)}</Text>
         </View>
       </TouchableOpacity>
     );
