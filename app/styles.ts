@@ -1,8 +1,9 @@
+import { colors } from "@/components";
 import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
 
 export const headerStyle = {
     headerStyle: {
-        backgroundColor: '#f4511e',
+        backgroundColor: colors.tangelo,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {

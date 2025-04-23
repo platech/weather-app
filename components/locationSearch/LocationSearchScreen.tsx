@@ -1,10 +1,9 @@
 import { addSearchLocation, setLastKnownLocation } from "@/app/store";
 import GpsIcon from "@/assets/images/gps.svg";
 import { fullLocationName, mapGeocodingResponseToLocation } from "@/components/utils";
-import { useAppDispatch, useAppSelector, useGetGeocodedLocationSuggestions, useGetReverseGeocoding } from "@/hooks";
+import { useAppDispatch, useAppSelector, useDeviceLocation, useGetGeocodedLocationSuggestions, useGetReverseGeocoding } from "@/hooks";
 import { GeocodingResponse } from "@/types";
 import { useNavigation } from "@react-navigation/native";
-import { getLastKnownPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
 import { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { colors } from "../colors";
@@ -22,19 +21,9 @@ export function LocationSearchScreen() {
 
   const { data: locations, isLoading: isLoadingLocations, fetchGeocode } = useGetGeocodedLocationSuggestions();
   const { data: reverseGeocodingData, fetchReverseGeocode } = useGetReverseGeocoding();
-
-  const getDeviceLocation = () => requestForegroundPermissionsAsync().then(status => {
-    if (status.status === 'granted') {
-      getLastKnownPositionAsync().then(position => {
-        if (position?.coords) {
-          const { latitude, longitude } = position.coords;
-          fetchReverseGeocode({ latitude, longitude });
-        }
-      }).catch(error => {
-        console.log(error);
-      });
-    } else {
-      console.log('Permission not granted');
+  const { isLoading: isLoadingLocation, getDeviceLocation } = useDeviceLocation({
+    onLocationReceived: (latitude, longitude) => {
+      fetchReverseGeocode({ latitude, longitude });
     }
   });
 
@@ -82,7 +71,7 @@ export function LocationSearchScreen() {
     }));
   }, [searchQuery, locations, searchHistory]);
 
-  const isLoading = isLoadingLocations || isDebouncing;
+  const isLoading = isLoadingLocations || isDebouncing || isLoadingLocation;
   const showNoResults = searchQuery && !isLoading && displayData.length === 0;
   const showRecentSearches = !searchQuery && !isLoading && searchHistory.length > 0;
 
