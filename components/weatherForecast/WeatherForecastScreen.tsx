@@ -1,35 +1,35 @@
-import { GeocodingResponse } from '@/types/weather';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { ActivityIndicator, ScrollView, Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { CurrentWeatherView, FiveDayForecast } from '.';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { addSearchLocation, setLastKnownLocation } from '../../app/store/weatherSlice';
 import { useGetWeatherForecast } from '../../hooks';
 import { styles } from './styles';
 
-interface WeatherForecastScreenProps {
-  route?: {
-    params?: {
-      location?: GeocodingResponse
-    }
-  }
-}
 
-export function WeatherForecastScreen({ route }: WeatherForecastScreenProps) {
+export function WeatherForecastScreen() {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
+  const lastKnownLocation = useAppSelector(state => state.weather.lastKnownLocation);
+  const searchHistory = useAppSelector(state => state.weather.searchHistory);
 
   const navigateToSearch = () => {
     navigation.navigate('LocationSearch' as never);
   }
 
-  const location = route?.params?.location || null;
+  const location = lastKnownLocation || null;
 
   const { data: weather, isLoading: isLoadingWeather, fetchForecast } = useGetWeatherForecast({
-    coordinates: location
+    location
   });
 
   useEffect(() => {
     if (location) {
       fetchForecast();
+      // Update Redux state when location changes
+      dispatch(setLastKnownLocation(location));
+      dispatch(addSearchLocation(location));
     }
   }, [location]);
 
@@ -41,8 +41,8 @@ export function WeatherForecastScreen({ route }: WeatherForecastScreenProps) {
         </Text>
       </TouchableOpacity>
 
-      {isLoadingWeather &&  (
-          <ActivityIndicator size="large" color="#0000ff" style={styles.loadingIndicator} />
+      {isLoadingWeather && (
+        <ActivityIndicator size="large" color="#0000ff" style={styles.loadingIndicator} />
       )}
 
       {!location && (
@@ -54,6 +54,25 @@ export function WeatherForecastScreen({ route }: WeatherForecastScreenProps) {
           <CurrentWeatherView currentWeather={weather.current} fetchForecast={fetchForecast} />
           <FiveDayForecast dailyForecast={weather.daily} />
         </>
+      )}
+
+      {searchHistory.length > 0 && !location && (
+        <View style={styles.recentSearches}>
+          <Text style={styles.sectionTitle}>Recent Searches</Text>
+          {searchHistory.map((item, index) => (
+            <TouchableOpacity
+              key={`${item.lat}-${item.lon}-${index}`}
+              style={styles.recentSearchItem}
+              onPress={() => {
+                navigation.setParams({ location: item });
+              }}
+            >
+              <Text style={styles.recentSearchText}>
+                {item.name}, {item.state ? `${item.state}, ` : ''}{item.country}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       )}
     </ScrollView>
   );

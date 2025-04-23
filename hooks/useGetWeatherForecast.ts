@@ -1,18 +1,18 @@
 import Constants from 'expo-constants';
 import { useState } from 'react';
-import { Coordinates, WeatherForecast } from '../types/weather';
+import { Location, WeatherForecast } from '../types/weather';
 
 interface UseGetWeatherForecastProps {
-  coordinates: Coordinates | null;
+  location: Location | null;
 }
 
-export const useGetWeatherForecast = ({ coordinates }: UseGetWeatherForecastProps) => {
+export const useGetWeatherForecast = ({ location }: UseGetWeatherForecastProps) => {
   const [data, setData] = useState<WeatherForecast | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchForecast = async () => {
-    if (!coordinates) return;
+    if (!location) return;
 
     setIsLoading(true);
     setError(null);
@@ -25,7 +25,7 @@ export const useGetWeatherForecast = ({ coordinates }: UseGetWeatherForecastProp
 
       const response = await fetch(
         `https://api.openweathermap.org/data/3.0/onecall?` +
-        `lat=${coordinates.lat}&lon=${coordinates.lon}` +
+        `lat=${location.latitude}&lon=${location.longitude}` +
         `&exclude=minutely,hourly,alerts` +
         `&units=metric` +
         `&appid=${apiKey}`

@@ -91,4 +91,19 @@ export const styles = StyleSheet.create({
       marginBottom: 10,
       color: '#2d3436',
     },
+    recentSearches: {
+      marginTop: 20,
+      backgroundColor: 'white',
+      borderRadius: 12,
+      padding: 15,
+    },
+    recentSearchItem: {
+      paddingVertical: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#f0f0f0',
+    },
+    recentSearchText: {
+      fontSize: 16,
+      color: '#2d3436',
+    },
   });
