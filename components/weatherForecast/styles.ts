@@ -1,10 +1,8 @@
-import Constants from "expo-constants";
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 10,
-      paddingTop: Constants.statusBarHeight + 10,
       backgroundColor: '#ecf0f1',
     },
     searchInput: {
@@ -12,9 +10,15 @@ export const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: '#ddd',
       borderRadius: 8,
-      paddingHorizontal: 10,
       marginBottom: 20,
       backgroundColor: 'white',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    searchInputText: {
+      fontSize: 18,
+      color: '#2d3436',
+      fontWeight: 'bold',
     },
     currentWeather: {
       backgroundColor: 'white',
@@ -26,6 +30,9 @@ export const styles = StyleSheet.create({
       shadowOpacity: 0.1,
       shadowRadius: 4,
       elevation: 3,
+    },
+    loadingIndicator: {
+      alignSelf: 'center',
     },
     currentWeatherHeader: {
       flexDirection: 'row',

@@ -2,8 +2,8 @@ import { ScrollView } from "react-native";
 
 import { DailyForecast } from "@/types/weather";
 import { Image, Text, View } from "react-native";
-import { styles } from "../styles";
 import { getWeatherIcon } from "../utils";
+import { styles } from "./styles";
 
 export function FiveDayForecast({ dailyForecast }: { dailyForecast: DailyForecast[] }) {
     return (

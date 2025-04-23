@@ -33,7 +33,13 @@ export const useGetGeocodedLocationSuggestions = ({ query }: UseGeocodeLocationP
         throw new Error('Failed to fetch location data');
       }
 
-      const result = await response.json();
+      const rawResults = await response.json();
+      const result = rawResults.filter((location: GeocodingResponse, index: number) => {
+        return rawResults.findIndex((l: GeocodingResponse) => 
+          l.lat === location.lat && l.lon === location.lon
+        ) === index;
+      });
+      console.log(result);
       setData(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

@@ -1,7 +1,7 @@
 import { CurrentWeather } from "@/types/weather";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../styles";
 import { getWeatherIcon } from "../utils";
+import { styles } from "./styles";
 
 export function CurrentWeatherView({ currentWeather, fetchForecast }: { currentWeather: CurrentWeather, fetchForecast: () => void }) {
     return (

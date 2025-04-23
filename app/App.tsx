@@ -1,9 +1,7 @@
 
-import { WeatherForecastScreen } from '@/components';
-import LocationSearchScreen from '@/components/locationSearch/LocationSearchScreen';
+import { LocationSearchScreen, WeatherForecastScreen } from '@/components';
 import { createStaticNavigation, StaticParamList } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 
 const RootStack = createNativeStackNavigator({
   screens: {
