@@ -1,6 +1,6 @@
 import { ScrollView } from "react-native";
 
-import { DailyForecast } from "@/types/weather";
+import { DailyForecast } from "@/types";
 import { Image, Text, View } from "react-native";
 import { getWeatherIcon } from "../utils";
 import { styles } from "./styles";
@@ -13,7 +13,7 @@ export function FiveDayForecast({ dailyForecast }: { dailyForecast: DailyForecas
             <View style={styles.forecastContainer}>
               {dailyForecast.map(day => (
                 <View key={day.dt} style={styles.forecastCard}>
-                  <Text>{new Date(day.dt * 1000).toLocaleDateString()}</Text>
+                  <Text style={styles.forecastDate}>{new Date(day.dt * 1000).toLocaleDateString()}</Text>
                   <Image
                     style={styles.forecastIcon}
                     source={{

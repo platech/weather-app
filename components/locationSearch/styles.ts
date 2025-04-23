@@ -4,11 +4,11 @@ import { colors } from "../colors";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.secondary,
+    backgroundColor: colors.champagne,
     padding: 16,
   },
   locationContainer: {
-    backgroundColor: colors.quaternary,
+    backgroundColor: colors.sunset,
     padding: 12,
     borderRadius: 8,
     marginBottom: 16,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: colors.quaternary,
+    backgroundColor: colors.sunset,
     borderRadius: 8,
     marginBottom: 1,
     padding: 15,
@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
   locationItem: {
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: colors.quaternary,
+    borderBottomColor: colors.sunset,
   },
   sectionTitle: {
     fontSize: 20,

@@ -4,10 +4,10 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#F4DFC0',
+    backgroundColor: colors.champagne,
   },
   searchInput: {
-    backgroundColor: colors.quaternary,
+    backgroundColor: colors.sunset,
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   searchInputText: {
     fontSize: 16,
-    color: '#333333',
+    color: colors.sealbrown,
     flex: 1,
     marginRight: 8,
   },
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 32,
+    paddingVertical: 100,
   },
   emptyStateImage: {
     width: 200,
@@ -39,12 +39,12 @@ export const styles = StyleSheet.create({
   },
   emptyStateText: {
     fontSize: 16,
-    color: '#666666',
+    color: colors.sealbrown,
     textAlign: 'center',
     marginTop: 8,
   },
   currentWeather: {
-    backgroundColor: colors.quaternary,
+    backgroundColor: colors.sunset,
     borderRadius: 12,
     padding: 15,
     marginBottom: 20,
@@ -70,12 +70,12 @@ export const styles = StyleSheet.create({
   temperature: {
     fontSize: 48,
     textAlign: 'center',
-    color: '#2d3436',
+    color: colors.sealbrown,
   },
   weatherDescription: {
     fontSize: 18,
     textAlign: 'center',
-    color: '#636e72',
+    color: colors.sealbrown,
     marginBottom: 10,
   },
   weatherDetail: {
@@ -83,12 +83,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 5,
   },
+  weatherDetailText: {
+    fontSize: 16,
+    color: colors.sealbrown,
+  },
   forecastContainer: {
     flexDirection: 'row',
     marginBottom: 10,
   },
   forecastCard: {
-    backgroundColor: colors.quaternary,
+    backgroundColor: colors.sunset,
     borderRadius: 8,
     padding: 10,
     marginRight: 10,
@@ -99,6 +103,10 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
   },
+  forecastDate: {
+    fontSize: 16,
+    color: colors.sealbrown,
+  },
   forecastIcon: {
     width: 50,
     height: 50,
@@ -107,19 +115,13 @@ export const styles = StyleSheet.create({
   forecastTemp: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#2d3436',
+    color: colors.sealbrown,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#2d3436',
-  },
-  recentSearches: {
-    marginTop: 20,
-    backgroundColor: 'white',
-    borderRadius: 12,
-    padding: 15,
+    color: colors.sealbrown,
   },
   recentSearchItem: {
     paddingVertical: 10,
@@ -128,6 +130,17 @@ export const styles = StyleSheet.create({
   },
   recentSearchText: {
     fontSize: 16,
-    color: '#2d3436',
+    color: colors.sealbrown,
+  },
+  refreshButton: {
+    marginTop: 20,
+    padding: 15,
+    borderRadius: 8,
+  },
+  refreshButtonText: {
+    fontSize: 16,
+    color: colors.sealbrown,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });

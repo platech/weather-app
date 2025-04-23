@@ -12,7 +12,10 @@ export const useGetWeatherForecast = ({ location }: UseGetWeatherForecastProps) 
   const [error, setError] = useState<string | null>(null);
 
   const fetchForecast = async () => {
-    if (!location) return;
+    if (!location){
+      setData(null);
+      return;
+    } 
 
     setIsLoading(true);
     setError(null);

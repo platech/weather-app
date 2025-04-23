@@ -30,6 +30,12 @@ const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
+    clearLocationAndSearchData: (state) => {
+      state.searchHistory = [];
+      state.lastKnownLocation = null;
+      AsyncStorage.removeItem('searchHistory');
+      AsyncStorage.removeItem('lastKnownLocation');
+    },
     addSearchLocation: (state, action: PayloadAction<Location>) => {
       // Remove the location if it already exists to avoid duplicates
       state.searchHistory = state.searchHistory.filter(
@@ -76,7 +82,8 @@ const weatherSlice = createSlice({
 export const { 
   addSearchLocation, 
   setLastKnownLocation, 
-  clearSearchHistory 
+  clearSearchHistory,
+  clearLocationAndSearchData
 } = weatherSlice.actions;
 
 export default weatherSlice.reducer; 

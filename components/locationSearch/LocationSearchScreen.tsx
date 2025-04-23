@@ -1,10 +1,8 @@
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
-import { addSearchLocation, setLastKnownLocation } from "@/app/store/weatherSlice";
+import { addSearchLocation, setLastKnownLocation } from "@/app/store";
 import GpsIcon from "@/assets/images/gps.svg";
 import { fullLocationName, mapGeocodingResponseToLocation } from "@/components/utils";
-import { useGetGeocodedLocationSuggestions } from "@/hooks";
-import { useGetReverseGeocoding } from "@/hooks/useGetReverseGeocoding";
-import { GeocodingResponse } from "@/types/weather";
+import { useAppDispatch, useAppSelector, useGetGeocodedLocationSuggestions, useGetReverseGeocoding } from "@/hooks";
+import { GeocodingResponse } from "@/types";
 import { useNavigation } from "@react-navigation/native";
 import { getLastKnownPositionAsync, requestForegroundPermissionsAsync } from "expo-location";
 import { useEffect, useMemo, useState } from "react";
@@ -106,9 +104,8 @@ export function LocationSearchScreen() {
           style={styles.searchInput}
           value={searchQuery}
           placeholder="Search for a city"
-          placeholderTextColor={colors.tertiary}
+          placeholderTextColor={colors.dimGray}
           onChangeText={setSearchQuery}
-          autoFocus={true}
           returnKeyType="search"
           clearButtonMode="while-editing"
         />
