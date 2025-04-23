@@ -4,9 +4,10 @@ import { useAppDispatch, useAppSelector, useGetWeatherForecast } from '@/hooks';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { ActivityIndicator, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { CurrentWeatherView, FiveDayForecast } from '.';
 import { colors } from "../colors";
 import { fullLocationName } from '../utils';
+import { CurrentWeatherView } from './CurrentWeatherView';
+import { FiveDayForecast } from './FiveDayForecastView';
 import { styles } from './styles';
 
 export function WeatherForecastScreen() {

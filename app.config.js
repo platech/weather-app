@@ -1,5 +1,5 @@
 module.exports = {
-  name: "weather-app",
+  name: "Sunny Weather",
   slug: "weather-app",
   version: "1.0.0",
   orientation: "portrait",

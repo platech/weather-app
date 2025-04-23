@@ -4,9 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import store from './store/store';
 import { loadSavedState } from './store/weatherSlice';
-import { headerStyle } from './styles';
+import headerStyle from './styles';
 
 const RootStack = createNativeStackNavigator({
   screens: {
